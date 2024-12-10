@@ -34,6 +34,22 @@ function installer.install()
 		Plug 'fannheyward/telescope-coc.nvim'
 		Plug 'folke/noice.nvim'
 		Plug 'MunifTanjim/nui.nvim'
+		Plug 'neovim/nvim-lspconfig'
+		Plug 'williamboman/mason.nvim'
+		Plug 'williamboman/mason-lspconfig.nvim'
+
+		" Autocomplete
+		Plug 'hrsh7th/nvim-cmp'
+		" Fonte para LSP
+		Plug 'hrsh7th/cmp-nvim-lsp'
+		" Fonte para buffer
+		Plug 'hrsh7th/cmp-buffer'
+		" Fonte para arquivos
+		Plug 'hrsh7th/cmp-path'
+		" Snippets (opcional)
+		Plug 'L3MON4D3/LuaSnip'
+		" Integração de snippets com cmp
+		Plug 'saadparwaiz1/cmp_luasnip'
 		call plug#end()
 	]])
 end

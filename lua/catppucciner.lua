@@ -4,7 +4,7 @@ function catppucciner.config()
 	require('catppuccin').setup({
 	    flavour = "frappe", -- Opções: latte, frappe, macchiato, mocha
 	    background = { light = "latte", dark = "mocha" },
-		transparent_background = true,
+		transparent_background = false,
 	    integrations = {
 	        bufferline = true, -- Ativar integração com bufferline
 			nvimtree = {

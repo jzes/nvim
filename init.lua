@@ -24,12 +24,33 @@ formater.set_markdown_formater()
 catppucciner.config()
 
 vim.ui.select = require('dropbar.utils.menu').select
--- require("headlines").setup()
 require('Comment').setup()
-
 bufferliner.config()
 lualiner.config()
 toggle_termer.config()
 tree.config()
 
 keyset.set()
+
+-- require('noice').setup({
+-- 	cmdline = {
+--     enabled = true, -- Habilitar a interface para a linha de comando
+--   },
+--   messages = {
+--     enabled = true, -- Habilitar substituição de mensagens
+--   },
+--   lsp = {
+--     override = {
+--       -- Intercepta mensagens de progresso e substitui pela interface do Noice
+--       ["coc.showMessage"] = true,
+--     },
+--   },
+--   routes = {
+--     -- Redireciona mensagens específicas do Coc para o Noice
+--     {
+--       filter = { event = "msg_show", find = "Coc" },
+--       opts = { skip = true },
+--     },
+--   },
+-- })
+

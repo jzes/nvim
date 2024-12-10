@@ -33,6 +33,8 @@ function installer.install()
 		Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 		Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 		Plug 'fannheyward/telescope-coc.nvim'
+		Plug 'folke/noice.nvim'
+		Plug 'MunifTanjim/nui.nvim'
 		call plug#end()
 	]])
 end

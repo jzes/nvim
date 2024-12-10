@@ -1,6 +1,22 @@
 {
   "suggest.autoTrigger": "none",
   "signature.enable": false,
+  "sugest.enableMessage": true,
+  "diagnostic.messageTarget": "echo",
+  "suggest.floatConfig": {
+    "border": [
+      "╭", "─", "╮", 
+      "│", "╯", "─", 
+      "╰", "│"
+    ]
+  },
+  "diagnostic.floatConfig": {
+    "border": [
+      "╭", "─", "╮", 
+      "│", "╯", "─", 
+      "╰", "│"
+    ]
+  },
   "languageserver": {
     "go": {
       "command": "gopls",

@@ -4,7 +4,6 @@ function installer.install()
 	vim.cmd([[
 		call plug#begin()
 		Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 		Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 		Plug 'junegunn/fzf.vim'
 		Plug 'stsewd/fzf-checkout.vim'

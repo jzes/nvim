@@ -50,6 +50,7 @@ function installer.install()
 		Plug 'L3MON4D3/LuaSnip'
 		" Integração de snippets com cmp
 		Plug 'saadparwaiz1/cmp_luasnip'
+		Plug 'rcarriga/nvim-notify'
 		call plug#end()
 	]])
 end

@@ -1,10 +1,13 @@
 local text = require("text")
 local utils = require("utils")
 local telescope_args_shortcut = require("telescope-live-grep-args.shortcuts")
+local buffercloser = require("buffercloser")
 
 local keyset = {}
 
 function On_attach(_, bufnr)
+	vim.g.mapleader = " "
+	vim.g.maplocalleader = " "
 	if not bufnr or bufnr == 0 then
     	bufnr = vim.api.nvim_get_current_buf()
   	end
@@ -14,11 +17,10 @@ function On_attach(_, bufnr)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, utils.add_field(bufopts, "desc", "-> Busca pela definição do que esta no cursor"))
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, utils.add_field(bufopts, "desc", "-> Mostra a documentação"))
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, utils.add_field(bufopts, "desc", ""))
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, utils.add_field(bufopts, "desc", "-> Renomeia o que esta no cursor"))
 end
 
 function keyset.set()
-	vim.o.timeoutlen = 300
+	vim.o.timeoutlen = 2000
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 	local set_keymap = vim.api.nvim_set_keymap
@@ -48,6 +50,8 @@ function keyset.set()
 	vim.keymap.set("n", "<leader>r", ":Telescope lsp_references<CR>", utils.add_field(basic_ops, "desc", "-> Busca as referencias do que esta no cursor"))
 	vim.keymap.set("n", "<leader>i", ":Telescope lsp_implementations<CR>", utils.add_field(basic_ops, "desc", "-> Busca as implementações do que esta no cursor"))
 	vim.keymap.set('n', '<leader>d', ':Telescope lsp_definitions<CR>', utils.add_field(basic_ops, "desc", "-> Busca pela definição do que esta no cursor"))
+	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { noremap = true, silent = true, desc = "-> LSP Rename" })
+	vim.keymap.set('n', '<leader>c', buffercloser.close, { noremap = true, silent = true, desc = "-> Close buffers" })
 end
 
 return keyset

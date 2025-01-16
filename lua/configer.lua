@@ -1,3 +1,5 @@
+local buffercloser = require("buffercloser")
+
 local configer = {}
 
 function configer.config_basic()
@@ -18,7 +20,7 @@ function configer.config_basic()
 	  	set scrolloff=8
 	  	set sidescrolloff=8
 	  	set nojoinspaces
-	  	set clipboard=unnamedplus
+	  	set clipboard=unnamed,unnamedplus
 	  	set confirm
 	]])
 end
@@ -38,14 +40,27 @@ end
 function configer.config_gen()
 	vim.opt.backup = false
 	vim.opt.writebackup = false
-	
 	-- Tempo de update mais curto pra melhorar a experiência
 	vim.opt.updatetime = 300
-	
 	-- Always show the signcolumn, otherwise it would shift the text each time
 	-- diagnostics appeared/became resolved
 	-- ???
 	vim.opt.signcolumn = "yes"
+end
+
+function configer.build_commands()
+	vim.api.nvim_create_user_command(
+	  'Rename',
+	  function()
+		vim.lsp.buf.rename()
+	  end,
+	  { desc = "-> LSP Rename Symbol" }
+	)
+	vim.api.nvim_create_user_command(
+	  'Close',
+	  buffercloser.close,
+	  { desc = "-> Smart close buffer" }
+	)
 end
 
 return configer

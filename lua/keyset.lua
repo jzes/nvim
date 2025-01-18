@@ -5,12 +5,32 @@ local buffercloser = require("buffercloser")
 
 local keyset = {}
 
-function On_attach(_, bufnr)
+-- dividir essa função em funçoes menores
+-- repensar esse esquema do on atach
+function keyset.on_attach(client, bufnr)
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 	if not bufnr or bufnr == 0 then
     	bufnr = vim.api.nvim_get_current_buf()
   	end
+
+
+	-- Verifica se o servidor suporta o recurso de Document Highlight
+	if client.server_capabilities.documentHighlightProvider then
+    -- Define autocmds para iniciar e limpar o realce
+    	vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = true })
+    	vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      		group = 'LspDocumentHighlight',
+      		buffer = bufnr,
+      		callback = vim.lsp.buf.document_highlight,
+    	})
+		vim.api.nvim_create_autocmd('CursorMoved', {
+			group = 'LspDocumentHighlight',
+			buffer = bufnr,
+			callback = vim.lsp.buf.clear_references,
+		})
+	end
+
 	-- Atalhos padrão para LSP
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, utils.add_field(bufopts, "desc", ""))
@@ -42,9 +62,9 @@ function keyset.set()
 	set_keymap('n', 'NT', ':BufferLineCyclePrev<CR>', utils.add_field(basic_ops, "desc", "-> Buffer anterior"))
 	set_keymap('n', '<leader>t', ':NvimTreeToggle<CR>', utils.add_field(basic_ops, "desc", "-> Abre a arvore de arquivos"))
 	set_keymap('n', '<leader><leader>', ':Telescope keymaps<CR>->',  utils.add_field(basic_ops, "desc", "-> lista os atalhos"))
-	set_keymap('n', '<C-l>', 'dlp', utils.add_field(basic_ops, "desc", "-> move o caracter pro lado"))
+	set_keymap('n', '<C-l>', 'dlp', utils.add_field(basic_ops, "desc", "-> move o caracter pro lado direito"))
 	set_keymap('v', '<C-l>', 'd`>p', utils.add_field(basic_ops, "desc", "-> [WIP] mover o selecionado pra esquerda"))
-	set_keymap('n', '<C-h>', 'dlhhp', utils.add_field(basic_ops, "desc", "-> move o caracter pro lado"))
+	set_keymap('n', '<C-h>', 'dlhhp', utils.add_field(basic_ops, "desc", "-> move o caracter pro lado esquerdo"))
 	vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
 
 	vim.keymap.set("n", "<leader>r", ":Telescope lsp_references<CR>", utils.add_field(basic_ops, "desc", "-> Busca as referencias do que esta no cursor"))

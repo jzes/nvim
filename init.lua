@@ -37,7 +37,7 @@ toggle_termer.config()
 tree.config()
 
 keyset.set()
-lspconfiger.config(keyset.On_attach)
+lspconfiger.config(keyset.on_attach)
 autocompleter.config(cmp)
 noicer.config()
 

@@ -1,8 +1,10 @@
 local bufferliner = {}
 
 function bufferliner.config()
+	local catppuccin_colors = require("catppuccin.groups.integrations.bufferline").get()
+	catppuccin_colors.indicator_selected = {fg = '#99d1db'}
 	require("bufferline").setup({
-		highlights = require("catppuccin.groups.integrations.bufferline").get(),
+		highlights = catppuccin_colors,
 		options = {
 			numbers = "none", -- Não mostrar números de buffers
 			close_command = "bdelete! %d",       -- Comando para fechar o buffer

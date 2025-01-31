@@ -3,8 +3,21 @@ local tree = {}
 function tree.config()
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
-	
-	require("nvim-tree").setup()
+	require("nvim-tree").setup({
+		view = {
+			width = 30,
+		},
+	  renderer = {
+		indent_markers = {
+		  enable = true, -- Ativa os indent guides
+		  icons = { -- Ícones personalizados para os marcadores de indentação (opcional)
+			corner = "╰ ",
+			edge = "│ ",
+			none = "  ", -- Espaço vazio quando não há indentação
+		  }
+		}
+	  }
+	})
 	require('gitsigns').setup {
 		signs = {
 			add          = { text = '┃' },

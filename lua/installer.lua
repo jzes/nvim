@@ -51,6 +51,7 @@ function installer.install()
 		" Integração de snippets com cmp
 		Plug 'saadparwaiz1/cmp_luasnip'
 		Plug 'rcarriga/nvim-notify'
+		Plug 'OXY2DEV/markview.nvim'
 		call plug#end()
 	]])
 end

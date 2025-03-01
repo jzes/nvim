@@ -3,6 +3,9 @@ local autocompleter = {}
 function autocompleter.config(cmp)
 
 	cmp.setup({
+		completion = {
+			autocomplete = false,
+		},
 	  mapping = {
 		["<C-Space>"] = cmp.mapping.complete(), -- Abrir menu de sugestões
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirmar a seleção com Enter

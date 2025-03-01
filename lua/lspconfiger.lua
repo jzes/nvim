@@ -68,7 +68,11 @@ function lspconfiger.config(on_attach)
 	}
 
 	vim.diagnostic.config({
-		virtual_text = true,
+		virtual_text = {
+			wrap = true, -- Habilita a quebra de linha
+			spacing = 4, -- Define o espaçamento entre o texto e o erro
+			prefix = "●", -- Adiciona um prefixo (pode ser qualquer caractere)
+		},
 		signs = true,
 		float = {
 			border = "rounded", -- Bordas arredondadas para janelas de diagnóstico

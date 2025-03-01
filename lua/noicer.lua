@@ -27,6 +27,14 @@ function noicer.config()
 			signature = {
 				enabled = true, -- Usa Noice para assinatura de métodos
 			},
+			message = {
+				enabled = true,
+      			view = "popup",
+      			opts = {
+        			border = "rounded",
+        			wrap = true, -- Garante que o texto dentro da janela quebre a linha
+      			},
+			}
 		},
 		presets = {
 			bottom_search = false, -- Caixa de busca no rodapé

@@ -72,6 +72,9 @@ function keyset.set()
 	vim.keymap.set('n', '<leader>d', ':Telescope lsp_definitions<CR>', utils.add_field(basic_ops, "desc", "-> Busca pela definição do que esta no cursor"))
 	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { noremap = true, silent = true, desc = "-> LSP Rename" })
 	vim.keymap.set('n', '<leader>c', buffercloser.close, { noremap = true, silent = true, desc = "-> Close buffers" })
+	vim.keymap.set('n', '<leader>e', function()
+  		vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
+	end, { noremap = true, silent = true, desc = "-> Abre erros em janela flutuante" })
 end
 
 return keyset

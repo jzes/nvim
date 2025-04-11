@@ -31,7 +31,6 @@ function installer.install()
 		Plug 'nvim-lua/plenary.nvim'
 		Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 		Plug 'nvim-telescope/telescope-live-grep-args.nvim'
-		Plug 'fannheyward/telescope-coc.nvim'
 		Plug 'folke/noice.nvim'
 		Plug 'MunifTanjim/nui.nvim'
 		Plug 'neovim/nvim-lspconfig'
@@ -52,6 +51,8 @@ function installer.install()
 		Plug 'saadparwaiz1/cmp_luasnip'
 		Plug 'rcarriga/nvim-notify'
 		Plug 'OXY2DEV/markview.nvim'
+		
+		Plug 'echasnovski/mini.map'
 		call plug#end()
 	]])
 end

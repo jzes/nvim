@@ -41,4 +41,16 @@ lspconfiger.config(keyset.on_attach)
 autocompleter.config(cmp)
 noicer.config()
 
-
+require("mini.map").setup({
+  integrations = {
+    require("mini.map").gen_integration.diagnostic({
+      error = "DiagnosticSignError",
+      warn  = "DiagnosticSignWarn",
+      info  = "DiagnosticSignInfo",
+      hint  = "DiagnosticSignHint",
+    }),
+  },
+  symbols = { encode = require("mini.map").gen_encode_symbols.dot("4x2") },
+  window = { width = 10, focusable = false }
+})
+require("mini.map").open()

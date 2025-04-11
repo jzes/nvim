@@ -1,6 +1,7 @@
 local text = require("text")
 local utils = require("utils")
 local telescope_args_shortcut = require("telescope-live-grep-args.shortcuts")
+local telescoper = require("telescoper")
 local buffercloser = require("buffercloser")
 
 local keyset = {}
@@ -67,7 +68,7 @@ function keyset.set()
 	set_keymap('n', '<C-h>', 'dlhhp', utils.add_field(basic_ops, "desc", "-> move o caracter pro lado esquerdo"))
 	vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
 
-	vim.keymap.set("n", "<leader>r", ":Telescope lsp_references<CR>", utils.add_field(basic_ops, "desc", "-> Busca as referencias do que esta no cursor"))
+	vim.keymap.set("n", "<leader>r", telescoper.custom_lsp_references, utils.add_field(basic_ops, "desc", "-> Busca as referencias do que esta no cursor"))
 	vim.keymap.set("n", "<leader>i", ":Telescope lsp_implementations<CR>", utils.add_field(basic_ops, "desc", "-> Busca as implementações do que esta no cursor"))
 	vim.keymap.set('n', '<leader>d', ':Telescope lsp_definitions<CR>', utils.add_field(basic_ops, "desc", "-> Busca pela definição do que esta no cursor"))
 	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { noremap = true, silent = true, desc = "-> LSP Rename" })

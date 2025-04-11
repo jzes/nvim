@@ -16,6 +16,8 @@ function lspconfiger.config(on_attach)
 		})
 	end})
 
+	lspconfig.gleam.setup({})
+
 	lspconfig.lua_ls.setup({
 		settings = {
 			Lua = {

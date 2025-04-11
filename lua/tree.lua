@@ -16,7 +16,17 @@ function tree.config()
 			none = "  ", -- Espaço vazio quando não há indentação
 		  }
 		}
-	  }
+	  },
+	  diagnostics = {
+		enable = true,  -- Ativa os diagnósticos do LSP na árvore
+		show_on_dirs = true,  -- Mostra erros nos diretórios também
+		icons = {
+		  hint = "",
+		  info = "",
+		  warning = "",
+		  error = "",
+	  },
+  },
 	})
 	require('gitsigns').setup {
 		signs = {

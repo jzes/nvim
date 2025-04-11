@@ -3,7 +3,7 @@ local toggle_termer = {}
 function toggle_termer.config()
 	require("toggleterm").setup{
 		size = 20, -- Tamanho do terminal (pode ser ajustado conforme necessário)
-		open_mapping = [[<c-t>]], -- Atalho para abrir o terminal (Ctrl + \)
+		open_mapping = [[<c-\>]], -- Atalho para abrir o terminal (Ctrl + \)
 		hide_numbers = true, -- Esconde a numeração das linhas quando o terminal está ativo
 		shade_terminals = false, -- Aplica um efeito de sombreado no terminal
 		direction = 'float', -- Terminal flutuante

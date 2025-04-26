@@ -54,3 +54,16 @@ require("mini.map").setup({
   window = { width = 10, focusable = false }
 })
 require("mini.map").open()
+
+vim.opt.guicursor = {
+  "n-v-c:block-Cursor",     -- normal, visual, command: bloco
+  "i-ci-ve:ver25-CursorInsert", -- insert, insert-command, visual-ex (linha vertical)
+  "r-cr:hor20-CursorReplace",   -- replace modes
+}
+
+-- Defina as cores do cursor
+vim.cmd [[
+  highlight Cursor guifg=#1e1e2e guibg=#f38ba8
+  highlight CursorInsert guifg=#1e1e2e guibg=#a6e3a1
+  highlight CursorReplace guifg=#1e1e2e guibg=#f9e2af
+]]

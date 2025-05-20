@@ -53,6 +53,7 @@ function installer.install()
 		Plug 'OXY2DEV/markview.nvim'
 		
 		Plug 'echasnovski/mini.map'
+		Plug 'olimorris/onedarkpro.nvim'
 		call plug#end()
 	]])
 end

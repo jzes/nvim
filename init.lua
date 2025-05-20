@@ -61,6 +61,14 @@ vim.opt.guicursor = {
   "r-cr:hor20-CursorReplace",   -- replace modes
 }
 
+
+
+-- require('telescope.builtin').colorscheme({
+--   default_text = "onedark", -- Define o texto inicial da busca
+--   -- enable_preview = true -- Geralmente já é true por padrão para este picker
+-- })
+vim.cmd('colorscheme onedark')
+
 -- Defina as cores do cursor
 vim.cmd [[
   highlight Cursor guifg=#1e1e2e guibg=#f38ba8

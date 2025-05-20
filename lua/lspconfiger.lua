@@ -2,23 +2,48 @@ local lspconfiger = {}
 
 function lspconfiger.config(on_attach)
 
-	local capabilities = require("cmp_nvim_lsp").default_capabilities()
-	require("mason").setup()
-	require("mason-lspconfig").setup({
-		ensure_installed = {"gopls", "lua_ls", "rust_analyzer", "pyright"}
+
+	-- Ícones para diagnósticos (opcional, requer uma Nerd Font)
+	local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+	for type, icon in pairs(signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+	end
+
+	vim.diagnostic.config({
+		virtual_text = false,
+		signs = true,
+		underline = true,
+		update_in_insert = false,
+		severity_sort = true,
+		float = {
+			focusable = false,
+			style = "minimal",
+			border = "rounded",
+			source = true,
+			header = "",
+			prefix = "",
+		},
 	})
 
+
+	require("mason").setup()
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local masonLspConfig = require("mason-lspconfig")
 	local lspconfig = require("lspconfig")
-	require("mason-lspconfig").setup_handlers({function (server_name)
-		lspconfig[server_name].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-	end})
 
-	lspconfig.gleam.setup({})
+	masonLspConfig.setup({
+		automatic_enable = true,
+		ensure_installed = {"gopls", "lua_ls", "rust_analyzer", "pyright", "volar"},
+		handlers = {function (server_name)
+			lspconfig[server_name].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end},
+	})
 
-	lspconfig.lua_ls.setup({
+	vim.lsp.config("lua_ls", {
 		settings = {
 			Lua = {
 				runtime = {
@@ -36,11 +61,8 @@ function lspconfiger.config(on_attach)
 					checkThirdParty = false,
 				},
 			},
-		},
+		}
 	})
-
-	local mason_registry = require('mason-registry')
-    local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
 
 	lspconfig.ts_ls.setup {
 		-- Initial options for the TypeScript language server
@@ -50,8 +72,6 @@ function lspconfiger.config(on_attach)
 					-- Name of the TypeScript plugin for Vue
 					name = '@vue/typescript-plugin',
 
-					-- Location of the Vue language server module (path defined in step 1)
-					location = vue_language_server_path,
 
 					-- Specify the languages the plugin applies to (in this case, Vue files)
 					languages = { 'vue' },
@@ -68,6 +88,7 @@ function lspconfiger.config(on_attach)
 			'vue'                  -- Vue.js single-file components (.vue)
 		},
 	}
+
 
 	vim.diagnostic.config({
 		virtual_text = {

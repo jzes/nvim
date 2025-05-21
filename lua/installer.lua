@@ -54,6 +54,7 @@ function installer.install()
 		
 		Plug 'echasnovski/mini.map'
 		Plug 'olimorris/onedarkpro.nvim'
+		Plug 'ellisonleao/gruvbox.nvim'
 		call plug#end()
 	]])
 end

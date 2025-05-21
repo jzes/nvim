@@ -67,8 +67,9 @@ vim.opt.guicursor = {
 --   default_text = "onedark", -- Define o texto inicial da busca
 --   -- enable_preview = true -- Geralmente já é true por padrão para este picker
 -- })
-vim.cmd('colorscheme onedark')
-
+-- vim.cmd('colorscheme onedark')
+vim.o.background = "light" -- or "light" for light mode
+vim.cmd('colorscheme gruvbox')
 -- Defina as cores do cursor
 vim.cmd [[
   highlight Cursor guifg=#1e1e2e guibg=#f38ba8

@@ -2,7 +2,7 @@ local catppucciner = {}
 
 function catppucciner.config()
 	require('catppuccin').setup({
-	    flavour = "frappe", -- Opções: latte, frappe, macchiato, mocha
+	    flavour = "latte", -- Opções: latte, frappe, macchiato, mocha
 	    background = { light = "latte", dark = "mocha" },
 		transparent_background = false,
 	    integrations = {

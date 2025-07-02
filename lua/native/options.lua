@@ -33,11 +33,28 @@ local function setupBehavior()
     vim.opt.signcolumn = "yes"           -- sempre mostra a coluna de sinais
 end
 
+local function setupDiagnostic()
+    vim.diagnostic.config({
+        virtual_text = true, -- ou true se quiser o texto inline também
+        float = {
+            border = "rounded",
+            source = true,
+            header = "",
+            prefix = "",
+        },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+    })
+end
+
 function options.setup()
    setupInterface()
    setupIdentation()
    setupSearch()
    setupBehavior()
+   setupDiagnostic()
 end
 
 return options

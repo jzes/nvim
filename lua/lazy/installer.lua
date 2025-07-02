@@ -44,7 +44,7 @@ function installer.ensureInstall()
 end
 
 function installer.setupPlugins()
-    require("lazy").setup("plugins") 
+    require("lazy").setup("plugins")
 end
 
 return installer

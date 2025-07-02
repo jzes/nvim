@@ -1,15 +1,45 @@
 local nativeOptions = require("native.options")
 local lazyInstaller = require("lazy.installer")
+local nativeKeyMapper = require("native.keys")
+local lsp = require("lsp.lsp")
 
-local function main()
+local tabs = require("ui.tabs")
+local noice = require("ui.noice")
+local fzfLua = require("ui.fzflua")
+local nvimTree = require("ui.nvimtree")
+
+local autocomplete = require("autocomp.cmps")
+
+local function nativeConfig()
+    nativeKeyMapper.map()
     nativeOptions.setup()
+end
+
+local function lazyConfig()
     lazyInstaller.ensureInstall()
     lazyInstaller.setupPlugins()
 end
 
-vim.lsp.skip_setup = {
-  gopls = true,
-  lua_ls = true,
-}
+local function uiConfig()
+    fzfLua.setKeys()
+    tabs.setup()
+    tabs.setKeys()
+    nvimTree.setup()
+    noice.setup()
+    lsp.setSigns()
+end
+
+local function main()
+    nativeConfig()
+    lazyConfig()
+
+    lsp.setupServers()
+
+    uiConfig()
+
+    autocomplete.setup()
+end
+
+
 
 main()

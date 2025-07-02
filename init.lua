@@ -7,8 +7,10 @@ local tabs = require("ui.tabs")
 local noice = require("ui.noice")
 local fzfLua = require("ui.fzflua")
 local nvimTree = require("ui.nvimtree")
+local luabar = require("ui.luabar")
 
 local autocomplete = require("autocomp.cmps")
+local surround = require("autocomp.surround")
 
 local function nativeConfig()
     nativeKeyMapper.map()
@@ -27,6 +29,7 @@ local function uiConfig()
     nvimTree.setup()
     noice.setup()
     lsp.setSigns()
+    luabar.setup()
 end
 
 local function main()
@@ -38,8 +41,7 @@ local function main()
     uiConfig()
 
     autocomplete.setup()
+    surround.setup()
 end
-
-
 
 main()

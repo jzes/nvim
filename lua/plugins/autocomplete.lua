@@ -9,6 +9,10 @@ autocomplete.plugins = {
             "hrsh7th/cmp-path",
             "onsails/lspkind.nvim",
         },
+    },
+    {
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
     }
 }
 

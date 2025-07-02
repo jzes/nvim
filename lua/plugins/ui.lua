@@ -23,6 +23,11 @@ ui.plugins = {
             "rcarriga/nvim-notify",
             "stevearc/dressing.nvim",
         },
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        event = "VeryLazy"
     }
 }
 

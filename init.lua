@@ -32,16 +32,17 @@ local function uiConfig()
     luabar.setup()
 end
 
+local function autoCompConfig()
+    autocomplete.setup()
+    surround.setup()
+end
+
 local function main()
     nativeConfig()
     lazyConfig()
-
     lsp.setupServers()
-
     uiConfig()
-
-    autocomplete.setup()
-    surround.setup()
+    autoCompConfig()
 end
 
 main()

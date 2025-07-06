@@ -1,5 +1,3 @@
-local tables = require("common.tables")
-local constants = require("common.consts")
 local nvimTree = {}
 
 function nvimTree.setup()
@@ -32,7 +30,6 @@ function nvimTree.setup()
       min = vim.diagnostic.severity.HINT,
       max = vim.diagnostic.severity.ERROR,
     },
-    icons = tables.toLowerKeys(constants.signs),
   },
     })
 end

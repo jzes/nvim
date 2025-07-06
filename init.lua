@@ -8,6 +8,7 @@ local noice = require("ui.noice")
 local fzfLua = require("ui.fzflua")
 local nvimTree = require("ui.nvimtree")
 local luabar = require("ui.luabar")
+local theme = require("ui.themes")
 
 local autocomplete = require("autocomp.cmps")
 local surround = require("autocomp.surround")
@@ -23,6 +24,7 @@ local function lazyConfig()
 end
 
 local function uiConfig()
+    theme.setMaterial("palenight")
     fzfLua.setKeys()
     tabs.setup()
     tabs.setKeys()

@@ -12,6 +12,7 @@ local theme = require("ui.themes")
 
 local autocomplete = require("autocomp.cmps")
 local surround = require("autocomp.surround")
+local formater = require("autocomp.formater")
 
 local function nativeConfig()
     nativeKeyMapper.map()
@@ -37,6 +38,7 @@ end
 local function autoCompConfig()
     autocomplete.setup()
     surround.setup()
+    formater.setup()
 end
 
 local function main()

@@ -13,6 +13,10 @@ autocomplete.plugins = {
     {
         "kylechui/nvim-surround",
         event = "VeryLazy",
+    },
+    {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
     }
 }
 

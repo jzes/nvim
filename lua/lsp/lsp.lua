@@ -3,15 +3,17 @@ local keyMapper = require("native.keys")
 local goLspServer = require("lsp.servers.gopls")
 local luaLspServer = require("lsp.servers.luals")
 local constants = require("common.consts")
+local tsLspServer = require("lsp.servers.tsls")
 
 local lsp = {}
 
 function lsp.setKeys(_, bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "d", vim.lsp.buf.definition, "Go to Definition", bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "D", vim.lsp.buf.declaration, "Go to Declaration", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "i", vim.lsp.buf.implementation, "Go to Implementation", bufnr)
+    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "i", vim.lsp.buf.implementation, "Go to Implementation",
+        bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "r", vim.lsp.buf.references, "Go to References", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "k",  vim.lsp.buf.hover, "Hover Documentation", bufnr)
+    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "k", vim.lsp.buf.hover, "Hover Documentation", bufnr)
     keyMapper.mapNormalModeToBuffer("<C-.>", vim.lsp.buf.signature_help, "Signature Help", bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "rn", vim.lsp.buf.rename, "Rename", bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "ca", vim.lsp.buf.code_action, "Code Action", bufnr)
@@ -33,6 +35,7 @@ function lsp.setupServers()
     local servers = {
         [goLspServer.name] = goLspServer.settings,
         [luaLspServer.name] = luaLspServer.settings,
+        [tsLspServer.name] = tsLspServer.settings,
     }
 
     for name, settings in pairs(servers) do

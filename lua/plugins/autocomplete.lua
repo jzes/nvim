@@ -27,6 +27,10 @@ autocomplete.plugins = {
         config = true
         -- use opts = {} for passing setup options
         -- this is equivalent to setup({}) function
+
+    },
+    {
+        "github/copilot.vim",
     }
 }
 

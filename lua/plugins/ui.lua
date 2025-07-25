@@ -12,7 +12,7 @@ ui.plugins = {
     },
     {
         "akinsho/bufferline.nvim",
-        dependencies = {"nvim-tree/nvim-web-devicons"},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         event = "VeryLazy",
     },
     {
@@ -28,7 +28,12 @@ ui.plugins = {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         event = "VeryLazy"
-    }
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+    },
+    { 'echasnovski/mini.map', version = false }
 }
 
 return ui.plugins

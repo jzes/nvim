@@ -9,6 +9,8 @@ local fzfLua = require("ui.fzflua")
 local nvimTree = require("ui.nvimtree")
 local luabar = require("ui.luabar")
 local theme = require("ui.themes")
+local gitsigns = require("ui.gitsigns")
+local mini = require("ui.minimap")
 
 local autocomplete = require("autocomp.cmps")
 local surround = require("autocomp.surround")
@@ -33,6 +35,8 @@ local function uiConfig()
     noice.setup()
     lsp.setSigns()
     luabar.setup()
+    gitsigns.setup()
+    mini.setup()
 end
 
 local function autoCompConfig()

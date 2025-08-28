@@ -5,6 +5,7 @@ local luaLspServer = require("lsp.servers.luals")
 local constants = require("common.consts")
 local tsLspServer = require("lsp.servers.tsls")
 local pyright = require("lsp.servers.pyright")
+local vueLspServer = require("lsp.servers.vls")
 
 local lsp = {}
 
@@ -25,6 +26,21 @@ function lsp.setKeys(_, bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "q", vim.diagnostic.setloclist, "Diagnostics List", bufnr)
 end
 
+function lsp.setCommands()
+    vim.api.nvim_create_autocmd('CursorHold', {
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+    })
+
+    -- Autocomando para limpar o destaque quando o cursor se move.
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+    })
+end
+
 function lsp.setupServers()
     vim.lsp.skip_setup = {
         gopls = true,
@@ -38,6 +54,7 @@ function lsp.setupServers()
         [luaLspServer.name] = luaLspServer.settings,
         [tsLspServer.name] = tsLspServer.settings,
         [pyright.name] = pyright.settings,
+        [vueLspServer.name] = vueLspServer.settings,
     }
 
     for name, settings in pairs(servers) do

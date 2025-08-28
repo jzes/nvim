@@ -1,3 +1,4 @@
+local native_navigate = require("native.nvigate")
 local ui = {}
 
 ui.plugins = {
@@ -33,7 +34,10 @@ ui.plugins = {
         "lewis6991/gitsigns.nvim",
         event = { "BufReadPre", "BufNewFile" },
     },
-    { 'echasnovski/mini.map', version = false }
+    { 'echasnovski/mini.map', version = false },
+    { "christoomey/vim-tmux-navigator",
+        native_navigate.map_navigation_keys()
+    }
 }
 
 return ui.plugins

@@ -49,6 +49,7 @@ local function main()
     nativeConfig()
     lazyConfig()
     lsp.setupServers()
+    lsp.setCommands()
     uiConfig()
     autoCompConfig()
 end

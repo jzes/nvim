@@ -6,15 +6,19 @@ local constants = require("common.consts")
 local tsLspServer = require("lsp.servers.tsls")
 local pyright = require("lsp.servers.pyright")
 local vueLspServer = require("lsp.servers.vls")
+local markdownLspServer = require("lsp.servers.markdown")
 
 local lsp = {}
 
 function lsp.setKeys(_, bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "d", "<CMD>FzfLua lsp_definitions<CR>", "Go to Definition", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "D", vim.lsp.buf.declaration, "Go to Declaration", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "i", "<CMD>FzfLua lsp_implementations<CR>", "Go to Implementation",
+    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "d", "<CMD>FzfLua lsp_definitions<CR>", "Go to Definition",
         bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "r", "<CMD>FzfLua lsp_references<CR>", "Go to References", bufnr)
+    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "D", vim.lsp.buf.declaration, "Go to Declaration", bufnr)
+    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "i", "<CMD>FzfLua lsp_implementations<CR>",
+        "Go to Implementation",
+        bufnr)
+    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "r", "<CMD>FzfLua lsp_references<CR>", "Go to References",
+        bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "k", vim.lsp.buf.hover, "Hover Documentation", bufnr)
     keyMapper.mapNormalModeToBuffer("<C-.>", vim.lsp.buf.signature_help, "Signature Help", bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "rn", vim.lsp.buf.rename, "Rename", bufnr)
@@ -28,16 +32,16 @@ end
 
 function lsp.setCommands()
     vim.api.nvim_create_autocmd('CursorHold', {
-      callback = function()
-        vim.lsp.buf.document_highlight()
-      end,
+        callback = function()
+            vim.lsp.buf.document_highlight()
+        end,
     })
 
     -- Autocomando para limpar o destaque quando o cursor se move.
     vim.api.nvim_create_autocmd('CursorMoved', {
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end,
+        callback = function()
+            vim.lsp.buf.clear_references()
+        end,
     })
 end
 
@@ -55,6 +59,7 @@ function lsp.setupServers()
         [tsLspServer.name] = tsLspServer.settings,
         [pyright.name] = pyright.settings,
         [vueLspServer.name] = vueLspServer.settings,
+        [markdownLspServer.name] = markdownLspServer.settings,
     }
 
     for name, settings in pairs(servers) do

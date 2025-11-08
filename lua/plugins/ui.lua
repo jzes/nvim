@@ -37,6 +37,9 @@ ui.plugins = {
     { 'echasnovski/mini.map', version = false },
     { "christoomey/vim-tmux-navigator",
         native_navigate.map_navigation_keys()
+    },
+    {
+        'saghen/blink.indent',
     }
 }
 

@@ -14,6 +14,7 @@ local mini = require("ui.minimap")
 local blink = require("ui.indentguide")
 
 local autocomplete = require("autocomp.cmps")
+local cursor_highlight = require("autocmd.cursor_highlight")
 local surround = require("autocomp.surround")
 local formater = require("autocomp.formater")
 
@@ -47,13 +48,17 @@ local function autoCompConfig()
     formater.setup()
 end
 
+local function autocmdConfig()
+    cursor_highlight.setCursorHighlight()
+end
+
 local function main()
     nativeConfig()
     lazyConfig()
     lsp.setupServers()
-    -- lsp.setCommands()
     uiConfig()
     autoCompConfig()
+    autocmdConfig()
 end
 
 main()

@@ -30,21 +30,6 @@ function lsp.setKeys(_, bufnr)
     keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "q", vim.diagnostic.setloclist, "Diagnostics List", bufnr)
 end
 
-function lsp.setCommands()
-    vim.api.nvim_create_autocmd('CursorHold', {
-        callback = function()
-            vim.lsp.buf.document_highlight()
-        end,
-    })
-
-    -- Autocomando para limpar o destaque quando o cursor se move.
-    vim.api.nvim_create_autocmd('CursorMoved', {
-        callback = function()
-            vim.lsp.buf.clear_references()
-        end,
-    })
-end
-
 function lsp.setupServers()
     vim.lsp.skip_setup = {
         gopls = true,

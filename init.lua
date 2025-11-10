@@ -1,69 +1,64 @@
-require("installer").install()
+local nativeOptions = require("native.options")
+local lazyInstaller = require("lazy.installer")
+local nativeKeyMapper = require("native.keys")
+local lsp = require("lsp.lsp")
 
-local configer = require("configer")
-local fzf = require("fzf")
-local keyset = require("keyset")
-local telescoper = require("telescoper")
-local formater = require("formater")
-local catppucciner = require("catppucciner")
-local bufferliner = require("bufferliner")
-local lualiner = require("lualiner")
-local toggle_termer = require("toggle_termer")
-local tree = require("tree")
-local lspconfiger = require("lspconfiger")
-local cmp = require("cmp")
-local autocompleter = require("autocompleter")
-local noicer = require("noicer")
+local tabs = require("ui.tabs")
+local noice = require("ui.noice")
+local fzfLua = require("ui.fzflua")
+local nvimTree = require("ui.nvimtree")
+local luabar = require("ui.luabar")
+local theme = require("ui.themes")
+local gitsigns = require("ui.gitsigns")
+local mini = require("ui.minimap")
+local blink = require("ui.indentguide")
 
-configer.config_basic()
-configer.config_style()
-configer.config_gen()
-configer.build_commands()
+local autocomplete = require("autocomp.cmps")
+local cursor_highlight = require("autocmd.cursor_highlight")
+local surround = require("autocomp.surround")
+local formater = require("autocomp.formater")
 
-fzf.configure()
-telescoper.config()
+local function nativeConfig()
+    nativeKeyMapper.map()
+    nativeOptions.setup()
+end
 
-formater.set_json_formater()
-formater.set_markdown_formater()
+local function lazyConfig()
+    lazyInstaller.ensureInstall()
+    lazyInstaller.setupPlugins()
+end
 
-catppucciner.config()
+local function uiConfig()
+    theme.setMaterial("palenight")
+    fzfLua.setKeys()
+    tabs.setup()
+    tabs.setKeys()
+    nvimTree.setup()
+    noice.setup()
+    lsp.setSigns()
+    luabar.setup()
+    gitsigns.setup()
+    mini.setup()
+    blink.setBlink()
+end
 
-vim.ui.select = require('dropbar.utils.menu').select
-require('Comment').setup()
+local function autoCompConfig()
+    autocomplete.setup()
+    surround.setup()
+    formater.setup()
+end
 
-bufferliner.config()
-lualiner.config()
-toggle_termer.config()
-tree.config()
+local function autocmdConfig()
+    cursor_highlight.setCursorHighlight()
+end
 
-keyset.set()
-lspconfiger.config(keyset.on_attach)
-autocompleter.config(cmp)
-noicer.config()
+local function main()
+    nativeConfig()
+    lazyConfig()
+    lsp.setupServers()
+    uiConfig()
+    autoCompConfig()
+    autocmdConfig()
+end
 
-require("mini.map").setup({
-  integrations = {
-    require("mini.map").gen_integration.diagnostic({
-      error = "DiagnosticSignError",
-      warn  = "DiagnosticSignWarn",
-      info  = "DiagnosticSignInfo",
-      hint  = "DiagnosticSignHint",
-    }),
-  },
-  symbols = { encode = require("mini.map").gen_encode_symbols.dot("4x2") },
-  window = { width = 10, focusable = false }
-})
-require("mini.map").open()
-
-vim.opt.guicursor = {
-  "n-v-c:block-Cursor",     -- normal, visual, command: bloco
-  "i-ci-ve:ver25-CursorInsert", -- insert, insert-command, visual-ex (linha vertical)
-  "r-cr:hor20-CursorReplace",   -- replace modes
-}
-
--- Defina as cores do cursor
-vim.cmd [[
-  highlight Cursor guifg=#1e1e2e guibg=#f38ba8
-  highlight CursorInsert guifg=#1e1e2e guibg=#a6e3a1
-  highlight CursorReplace guifg=#1e1e2e guibg=#f9e2af
-]]
+main()

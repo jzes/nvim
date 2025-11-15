@@ -15,6 +15,7 @@ local blink = require("ui.indentguide")
 
 local autocomplete = require("autocomp.cmps")
 local cursor_highlight = require("autocmd.cursor_highlight")
+local yank_highlight = require("autocmd.highlight_yank")
 local surround = require("autocomp.surround")
 local formater = require("autocomp.formater")
 
@@ -50,6 +51,7 @@ end
 
 local function autocmdConfig()
     cursor_highlight.setCursorHighlight()
+    yank_highlight.setHighlightYank()
 end
 
 local function main()

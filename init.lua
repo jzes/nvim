@@ -29,7 +29,12 @@ local function lazyConfig()
 end
 
 local function uiConfig()
-    theme.setMaterial("palenight")
+    -- theme.setMaterial("palenight")
+    theme.setCyberdream()
+    -- theme.setGruvboxDarkHard()
+    -- theme.setKanagawa()
+    -- theme.setOnedarkpro()
+    -- theme.setTokyonight()
     fzfLua.setKeys()
     tabs.setup()
     tabs.setKeys()
@@ -59,6 +64,9 @@ local function main()
     uiConfig()
     autoCompConfig()
     autocmdConfig()
+
+    vim.opt.exrc = true
+    vim.opt.secure = false
 end
 
 main()

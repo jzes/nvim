@@ -19,54 +19,55 @@ local surround = require("autocomp.surround")
 local formater = require("autocomp.formater")
 
 local function nativeConfig()
-    nativeKeyMapper.map()
-    nativeOptions.setup()
+        nativeKeyMapper.map()
+        nativeOptions.setup()
 end
 
 local function lazyConfig()
-    lazyInstaller.ensureInstall()
-    lazyInstaller.setupPlugins()
+        lazyInstaller.ensureInstall()
+        lazyInstaller.setupPlugins()
 end
 
 local function uiConfig()
-    -- theme.setMaterial("palenight")
-    theme.setCyberdream()
-    -- theme.setGruvboxDarkHard()
-    -- theme.setKanagawa()
-    -- theme.setOnedarkpro()
-    -- theme.setTokyonight()
-    fzfLua.setKeys()
-    tabs.setup()
-    tabs.setKeys()
-    nvimTree.setup()
-    noice.setup()
-    lsp.setSigns()
-    luabar.setup()
-    gitsigns.setup()
-    mini.setup()
-    blink.setBlink()
+        theme.setMaterial("palenight")
+        -- theme.setCyberdream()
+        -- theme.setGruvboxDarkHard()
+        -- theme.setKanagawa()
+        -- theme.setOnedarkpro()
+        -- theme.setTokyonight()
+        -- theme.setDracula()
+        fzfLua.setKeys()
+        tabs.setup()
+        tabs.setKeys()
+        nvimTree.setup()
+        noice.setup()
+        lsp.setSigns()
+        luabar.setup()
+        gitsigns.setup()
+        mini.setup()
+        blink.setBlink()
 end
 
 local function autoCompConfig()
-    autocomplete.setup()
-    surround.setup()
-    formater.setup()
+        autocomplete.setup()
+        surround.setup()
+        formater.setup()
 end
 
 local function autocmdConfig()
-    cursor_highlight.setCursorHighlight()
+        cursor_highlight.setCursorHighlight()
 end
 
 local function main()
-    nativeConfig()
-    lazyConfig()
-    lsp.setupServers()
-    uiConfig()
-    autoCompConfig()
-    autocmdConfig()
+        nativeConfig()
+        lazyConfig()
+        lsp.setupServers()
+        uiConfig()
+        autoCompConfig()
+        autocmdConfig()
 
-    vim.opt.exrc = true
-    vim.opt.secure = false
+        vim.opt.exrc = true
+        vim.opt.secure = false
 end
 
 main()

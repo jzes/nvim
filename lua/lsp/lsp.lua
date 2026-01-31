@@ -7,57 +7,64 @@ local tsLspServer = require("lsp.servers.tsls")
 local pyright = require("lsp.servers.pyright")
 local vueLspServer = require("lsp.servers.vls")
 local markdownLspServer = require("lsp.servers.markdown")
+local eslintServer = require("lsp.servers.esls")
 
 local lsp = {}
 
-function lsp.setKeys(_, bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "d", "<CMD>FzfLua lsp_definitions<CR>", "Go to Definition",
-        bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "D", vim.lsp.buf.declaration, "Go to Declaration", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "i", "<CMD>FzfLua lsp_implementations<CR>",
-        "Go to Implementation",
-        bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "r", "<CMD>FzfLua lsp_references<CR>", "Go to References",
-        bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "k", vim.lsp.buf.hover, "Hover Documentation", bufnr)
-    keyMapper.mapNormalModeToBuffer("<C-.>", vim.lsp.buf.signature_help, "Signature Help", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "rn", vim.lsp.buf.rename, "Rename", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "ca", vim.lsp.buf.code_action, "Code Action", bufnr)
+function lsp.setKeys(client, bufnr)
+  if client.name == "tsserver" or client.name == "ts_ls" or client.name == "tsls" then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
 
-    keyMapper.mapNormalModeToBuffer("[d", vim.diagnostic.goto_prev, "Previous Diagnostic", bufnr)
-    keyMapper.mapNormalModeToBuffer("]d", vim.diagnostic.goto_next, "Next Diagnostic", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "e", vim.diagnostic.open_float, "Show Diagnostic", bufnr)
-    keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "q", vim.diagnostic.setloclist, "Diagnostics List", bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "d", "<CMD>FzfLua lsp_definitions<CR>", "Go to Definition",
+    bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "D", vim.lsp.buf.declaration, "Go to Declaration", bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "i", "<CMD>FzfLua lsp_implementations<CR>",
+    "Go to Implementation",
+    bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "r", "<CMD>FzfLua lsp_references<CR>", "Go to References",
+    bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "k", vim.lsp.buf.hover, "Hover Documentation", bufnr)
+  keyMapper.mapNormalModeToBuffer("<C-.>", vim.lsp.buf.signature_help, "Signature Help", bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "rn", vim.lsp.buf.rename, "Rename", bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "ca", vim.lsp.buf.code_action, "Code Action", bufnr)
+
+  keyMapper.mapNormalModeToBuffer("[d", vim.diagnostic.goto_prev, "Previous Diagnostic", bufnr)
+  keyMapper.mapNormalModeToBuffer("]d", vim.diagnostic.goto_next, "Next Diagnostic", bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "e", vim.diagnostic.open_float, "Show Diagnostic", bufnr)
+  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "q", vim.diagnostic.setloclist, "Diagnostics List", bufnr)
 end
 
 function lsp.setupServers()
-    vim.lsp.skip_setup = {
-        gopls = true,
-        lua_ls = true,
-    }
+  vim.lsp.skip_setup = {
+    gopls = true,
+    lua_ls = true,
+  }
 
-    local lspconfig = require("lspconfig")
+  local lspconfig = require("lspconfig")
 
-    local servers = {
-        [goLspServer.name] = goLspServer.settings,
-        [luaLspServer.name] = luaLspServer.settings,
-        [tsLspServer.name] = tsLspServer.settings,
-        [pyright.name] = pyright.settings,
-        [vueLspServer.name] = vueLspServer.settings,
-        [markdownLspServer.name] = markdownLspServer.settings,
-    }
+  local servers = {
+    [goLspServer.name] = goLspServer.settings,
+    [luaLspServer.name] = luaLspServer.settings,
+    [tsLspServer.name] = tsLspServer.settings,
+    [pyright.name] = pyright.settings,
+    [vueLspServer.name] = vueLspServer.settings,
+    [markdownLspServer.name] = markdownLspServer.settings,
+    [eslintServer.name] = eslintServer.settings,
+  }
 
-    for name, settings in pairs(servers) do
-        settings.on_attach = lsp.setKeys
-        lspconfig[name].setup(settings)
-    end
+  for name, settings in pairs(servers) do
+    settings.on_attach = lsp.setKeys
+    lspconfig[name].setup(settings)
+  end
 end
 
 function lsp.setSigns()
-    for type, icon in pairs(constants.signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+  for type, icon in pairs(constants.signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  end
 end
 
 return lsp

@@ -13,6 +13,7 @@ local gitsigns = require("ui.gitsigns")
 local mini = require("ui.minimap")
 local blink = require("ui.indentguide")
 local harpoon = require("ui.harpoon")
+local gitlinker = require("ui.gitlinker")
 
 local autocomplete = require("autocomp.cmps")
 local cursor_highlight = require("autocmd.cursor_highlight")
@@ -50,6 +51,7 @@ local function uiConfig()
   blink.setBlink()
   harpoon.setup()
   harpoon.setKeys()
+  gitlinker.setup()
 end
 
 local function autoCompConfig()

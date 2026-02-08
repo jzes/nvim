@@ -32,7 +32,7 @@ function lsp.setKeys(client, bufnr)
 
   keyMapper.mapNormalModeToBuffer("[d", vim.diagnostic.goto_prev, "Previous Diagnostic", bufnr)
   keyMapper.mapNormalModeToBuffer("]d", vim.diagnostic.goto_next, "Next Diagnostic", bufnr)
-  keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "e", vim.diagnostic.open_float, "Show Diagnostic", bufnr)
+  -- keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "e", vim.diagnostic.open_float, "Show Diagnostic", bufnr)
   keyMapper.mapNormalModeToBuffer(keyMapper.LEADER_KEY .. "q", vim.diagnostic.setloclist, "Diagnostics List", bufnr)
 end
 

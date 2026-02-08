@@ -58,34 +58,31 @@ function fzfLua.setKeys()
     keys.buildDesc(keys.signDesc("FZF : LSP Code Actions")))
 
   vim.keymap.set(
-    keys.VISUAL_MODE,
-    keys.LEADER_KEY .. "ca",
-    "<cmd>FzfLua lsp_code_actions<CR>",
-    keys.buildDesc(keys.signDesc("FZF : LSP Code Actions")))
-
-  vim.keymap.set(
     keys.NORMAL_MODE,
-    keys.LEADER_KEY .. "dd",
-    "<cmd>FzfLua lsp_document_diagnostics<CR>",
+    keys.LEADER_KEY .. "e",
+    function()
+      require("fzf-lua").diagnostics_document()
+    end,
     keys.buildDesc(keys.signDesc("FZF : LSP Document Diagnostics")))
-
+  -- vim.keymap.set(
+  --   keys.NORMAL_MODE,
+  --   keys.LEADER_KEY .. "wd",
+  --   "<cmd>FzfLua lsp_workspace_diagnostics<CR>",
+  --   keys.buildDesc(keys.signDesc("FZF : LSP Document Diagnostics")))
+  --
   vim.keymap.set(
     keys.NORMAL_MODE,
-    keys.LEADER_KEY .. "wd",
-    "<cmd>FzfLua lsp_workspace_diagnostics<CR>",
-    keys.buildDesc(keys.signDesc("FZF : LSP Document Diagnostics")))
-
-  vim.keymap.set(
-    keys.NORMAL_MODE,
-    keys.LEADER_KEY .. "ds",
-    "<cmd>FzfLua lsp_document_symbols<CR>",
+    keys.LEADER_KEY .. "fs",
+    function()
+      require("fzf-lua").lsp_document_symbols()
+    end,
     keys.buildDesc(keys.signDesc("FZF : LSP Document Symbols")))
-
-  vim.keymap.set(
-    keys.NORMAL_MODE,
-    keys.LEADER_KEY .. "ws",
-    "<cmd>FzfLua lsp_workspace_symbols<CR>",
-    keys.buildDesc(keys.signDesc("FZF : LSP Document Symbols")))
+  --
+  -- vim.keymap.set(
+  --   keys.NORMAL_MODE,
+  --   keys.LEADER_KEY .. "ws",
+  --   "<cmd>FzfLua lsp_workspace_symbols<CR>",
+  --   keys.buildDesc(keys.signDesc("FZF : LSP Document Symbols")))
 end
 
 return fzfLua

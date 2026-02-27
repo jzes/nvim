@@ -10,7 +10,7 @@ local function search_in_files()
       "--no-heading",
       "--color=always",
       "--smart-case",
-      "--glob '!node_modules/**'",
+      "--exclude-dir", "node_modules",
       "--glob '!.git/**'",
       "--glob '!package-lock.json'",
       "--glob '!package.json'",

@@ -33,11 +33,9 @@ autocomplete.plugins = {
     "github/copilot.vim",
   },
   {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  }
+    "mg979/vim-visual-multi",
+    branch = "master",
+  },
 }
 
 return autocomplete.plugins

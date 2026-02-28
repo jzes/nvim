@@ -1,19 +1,20 @@
 local options = {}
 
 local function setupInterface()
-    vim.opt.number = true                                                   -- mostra número da linha
-    vim.opt.relativenumber = true                                           -- números relativos
-    vim.opt.cursorline = true                                               -- destaca a linha do cursor
-    vim.opt.termguicolors = true                                            -- ativa cores verdadeirasend
-    vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#000000", bg = "#00ff00" }) -- Insert (verde)
+    vim.opt.number = true                                                       -- mostra número da linha
+    vim.opt.relativenumber = true                                               -- números relativos
+    vim.opt.cursorline = true                                                   -- destaca a linha do cursor
+    vim.opt.termguicolors = true                                                -- ativa cores verdadeirasend
+    vim.api.nvim_set_hl(0, "CursorInsert", { fg = "#000000", bg = "#00ff00" })  -- Insert (verde)
     vim.api.nvim_set_hl(0, "CursorReplace", { fg = "#000000", bg = "#ff0000" }) -- Replace (vermelho)
 end
 
 local function setupIdentation()
-    vim.opt.tabstop = 4        -- tamanho de tabulação (tab real)
-    vim.opt.shiftwidth = 4     -- tamanho de indentação (>> <<)
+    -- vim.opt.tabstop = 4        -- tamanho de tabulação (tab real)
+    -- vim.opt.shiftwidth = 4     -- tamanho de indentação (>> <<)
     vim.opt.expandtab = true   -- converte tabs em espaços
     vim.opt.smartindent = true -- indentação automática inteligente
+    vim.g.editorconfig = true
 end
 
 local function setupSearch()

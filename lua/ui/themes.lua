@@ -22,4 +22,80 @@ function theme.setDracula()
     vim.cmd("colorscheme dracula")
 end
 
+function theme.setCyberdream()
+    vim.cmd("colorscheme cyberdream")
+end
+
+function theme.setGruvboxDarkHard()
+    require("gruvbox").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+            strings = true,
+            emphasis = true,
+            comments = true,
+            operators = false,
+            folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true,    -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+    })
+    vim.cmd("colorscheme gruvbox")
+    vim.g.gruvbox_contrast_dark = "hard"
+end
+
+function theme.setKanagawa()
+    require("kanagawa").setup({
+        undercurl = true,
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = { bold = true },
+        typeStyle = {},
+        variablebuiltinStyle = { italic = true },
+        specialReturn = true,
+        specialException = true,
+        transparent = false,
+        dimInactive = false,
+        globalStatus = false,
+        terminalColors = true,
+        colors = {
+            theme = {
+                all = {
+                    ui = {
+                        bg_gutter = "none",
+                    },
+                },
+            },
+        },
+        overrides = function(colors)
+            local themeColors = colors.theme
+            return {
+                -- Customize normal background
+                NormalFloat = { bg = themeColors.bg_dim },
+                FloatBorder = { bg = themeColors.bg_dim, fg = themeColors.fg_dim },
+            }
+        end,
+    })
+    vim.cmd("colorscheme kanagawa")
+end
+
+function theme.setOnedarkpro()
+    vim.cmd("colorscheme onedark")
+end
+
+function theme.setTokyonight()
+    vim.cmd("colorscheme tokyonight")
+end
+
 return theme

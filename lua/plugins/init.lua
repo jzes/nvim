@@ -2,7 +2,7 @@ local lsp = require("plugins.lsp")
 local ui = require("plugins.ui")
 local themes = require("plugins.themes")
 local autoComp = require("plugins.autocomplete")
-local notes = require("plugins.notas")
+local notes = require("plugins.notes")
 
 local completePlugins = {}
 

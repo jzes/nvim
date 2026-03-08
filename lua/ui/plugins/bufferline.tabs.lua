@@ -5,6 +5,7 @@ local M = {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   event = "VeryLazy",
   config = function()
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     require("bufferline").setup({
       options = {
         mode = "buffers", -- ou "tabs" se quiser tab real
@@ -14,7 +15,7 @@ local M = {
         offsets = {
           {
             filetype = "NvimTree",
-            text = "File Explorer",
+            -- text = "󰉋 " .. project_name,
             highlight = "Directory",
             text_align = "left",
           },

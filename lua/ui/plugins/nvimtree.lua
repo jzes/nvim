@@ -22,6 +22,10 @@ local M = {
             folder_arrow = true,
           },
         },
+        root_folder_label = function(path)
+          -- return ""
+          return "󰉋 " .. vim.fn.fnamemodify(path, ":t")
+        end,
       },
       diagnostics = {
         enable = true,

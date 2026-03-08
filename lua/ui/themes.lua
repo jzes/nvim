@@ -1,6 +1,6 @@
 local theme = {}
 
-function theme.setMaterial(variant)
+function theme.set_material(variant)
   vim.g.material_style = variant
   require("material").setup({
     -- disable = { background = false },
@@ -17,7 +17,7 @@ function theme.setMaterial(variant)
       comments = { italic = true },
       functions = { bold = true },
     },
-    plugins = { "noice" },
+    -- plugins = { "noice" },
     custom_highlights = {
       -- Aqui você define a cor do Visual Mode
       -- bg = Cor de fundo (Background)

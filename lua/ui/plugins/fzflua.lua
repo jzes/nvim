@@ -1,4 +1,4 @@
-local keys = require("core.keys")
+local keys = require("common.keys")
 
 local fzfLua = {
   "ibhagwan/fzf-lua",

@@ -1,4 +1,4 @@
-local keyMapper = require("core.keys")
+local keyMapper = require("common.keys")
 
 local M = {
   "akinsho/bufferline.nvim",
@@ -15,7 +15,7 @@ local M = {
         offsets = {
           {
             filetype = "NvimTree",
-            -- text = "󰉋 " .. project_name,
+            text = "󰉋 " .. project_name,
             highlight = "Directory",
             text_align = "left",
           },

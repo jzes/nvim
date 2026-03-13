@@ -1,4 +1,4 @@
-local keys = require "core.keys"
+local keys = require "common.keys"
 local M = {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -23,8 +23,8 @@ local M = {
           },
         },
         root_folder_label = function(path)
-          -- return ""
-          return "󰉋 " .. vim.fn.fnamemodify(path, ":t")
+          return ""
+          -- return "󰉋 " .. vim.fn.fnamemodify(path, ":t")
         end,
       },
       diagnostics = {

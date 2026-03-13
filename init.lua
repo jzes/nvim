@@ -1,6 +1,6 @@
 local nativeOptions = require("core.options")
 local lazyInstaller = require("lazy.installer")
-local nativeKeyMapper = require("core.keys")
+local nativeKeyMapper = require("common.keys")
 local lsp = require("intellisense.lsp.lsp")
 local theme = require("ui.themes")
 local ui = require("ui.ui")

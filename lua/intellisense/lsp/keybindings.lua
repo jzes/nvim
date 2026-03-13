@@ -1,4 +1,4 @@
-local key_mapper = require("core.keys")
+local key_mapper = require("common.keys")
 
 local M = {}
 function M.set_keybindings(keybindings, bufnr)

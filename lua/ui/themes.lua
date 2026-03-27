@@ -107,7 +107,15 @@ function theme.setOnedarkpro()
 end
 
 function theme.setTokyonight()
-  vim.cmd("colorscheme tokyonight")
+  require("tokyonight").setup({
+    style = "moon",
+    on_highlights = function(hl)
+      hl.Visual = {
+        bg = "#664e79",
+      }
+    end,
+  })
+  vim.cmd("colorscheme tokyonight-moon")
 end
 
 return theme

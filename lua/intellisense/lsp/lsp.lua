@@ -9,11 +9,10 @@ function lsp.on_atach(client, bufnr)
 end
 
 function lsp.setup_servers()
-  local lspconfig = require("lspconfig")
-
   for name, settings in pairs(servers.configs) do
     settings.on_attach = lsp.on_atach
-    lspconfig[name].setup(settings)
+    vim.lsp.config(name, settings)
+    vim.lsp.enable(name)
   end
 end
 

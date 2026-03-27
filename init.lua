@@ -17,12 +17,12 @@ local function lazyConfig()
 end
 
 local function set_theme()
-  theme.set_material("palenight")
+  -- theme.set_material("palenight")
   -- theme.setCyberdream()
   -- theme.setGruvboxDarkHard()
   -- theme.setKanagawa()
   -- theme.setOnedarkpro()
-  -- theme.setTokyonight()
+  theme.setTokyonight()
   -- theme.setDracula()
 end
 

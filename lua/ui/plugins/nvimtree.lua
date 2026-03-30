@@ -23,7 +23,7 @@ local M = {
           },
         },
         root_folder_label = function(path)
-          return ""
+          return "╭─█▓▒░ Explorer ░▒▓█──────────╮"
           -- return "󰉋 " .. vim.fn.fnamemodify(path, ":t")
         end,
       },

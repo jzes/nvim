@@ -23,8 +23,8 @@ local function set_theme()
   -- theme.setGruvboxDarkHard()
   -- theme.setKanagawa()
   -- theme.setOnedarkpro()
-  theme.setTokyonight()
-  -- theme.setDracula()
+  -- theme.setTokyonight()
+  theme.setDracula()
 end
 
 local function main()
